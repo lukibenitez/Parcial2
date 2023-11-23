@@ -1,7 +1,8 @@
+// src/routes/todos.ts
 import { Router } from "express";
 import { Todo } from "../models/todo";
 
-type RequestBody = { text: string };
+type RequestBody = { text: string, id: string  };
 type RequestParams = { todoId: string };
 type RequestQueries = { isCompleted?: string; searchTerm?: string };
 
@@ -58,7 +59,8 @@ router.get("/todos/:todoId", (req, res, next) => {
 router.post("/todos", (req, res, next) => {
     const body = req.body as RequestBody;
     const newTodo: Todo = {
-        id: new Date().toISOString(),
+        //id: new Date().toISOString(),
+        id: body.id,
         text: body.text,
         isCompleted: false,
     };
